@@ -7,7 +7,7 @@
 #          this script is under GNU GENERAL PUBLIC LICENSE 3
 # ------------------------------------------------------------------
 
-# VERSION=0.1.o
+# VERSION=0.1.0
 # USAGE="Usage: bash helloworld-downloader.sh [-f firstissue] [-l lastissue]"
 
 
@@ -18,7 +18,7 @@ Param(
 
 # control variables
 $i = 1
-$baseDir = ($PSScriptRoot )
+$baseDir = ($PSScriptRoot)
 $issues = Get-Content "$baseDir\regular-issues.txt" -First 1
 $baseUrl = "https://helloworld.raspberrypi.org/issues/"
 $web = New-Object system.net.webclient
