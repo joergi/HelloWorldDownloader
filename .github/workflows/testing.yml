@@ -17,10 +17,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Download Issues With end limit
-        id: normalIssuesWithLimit
-        shell: pwsh
-        run: ./helloworld-downloader.ps1 -l 3
+#      - name: Download Issues With end limit
+#        id: normalIssuesWithLimit
+#        shell: pwsh
+#        run: ./helloworld-downloader.ps1 -l 3
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         shell: pwsh
