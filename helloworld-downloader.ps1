@@ -1,4 +1,3 @@
-#!/bin/bash
 # ------------------------------------------------------------------
 # [Author] Original script for MagpiDownloader from @rubemlrm - https://github.com/joergi/MagPiDownloader
 #          adapted by @joergi for HelloWorld Downloader: https://github.com/joergi/HelloWorldDownloader
@@ -8,7 +7,7 @@
 # ------------------------------------------------------------------
 
 # VERSION=0.1.0
-# USAGE="Usage: bash helloworld-downloader.sh [-f firstissue] [-l lastissue]"
+# USAGE="Usage: powershell helloworld-downloader.ps1 [-f firstissue] [-l lastissue]"
 
 
 Param(
@@ -25,31 +24,44 @@ $web = New-Object system.net.webclient
 $errorCount = 0
 
 # Check if directory dont exist and try create
-if ( -Not (Test-Path -Path "$baseDir\issues" ) ) {
+if ( -Not (Test-Path -Path "$baseDir\issues" ) )
+{
     New-Item -ItemType directory -Path "$baseDir\issues"
 }
 
 
-if ($f) {
+if ($f)
+{
     $i = [int]$f
 }
 
-if ($l) {
+if ($l)
+{
     $issues = [int]$l
 }
 
-do {
+do
+{
     #start scrapping directory and download files
 
-    $tempCounter = if ($i -le 9) { "{0:00}" -f $i }  Else { $i }
+    $tempCounter = if ($i -le 9)
+    {
+        "{0:00}" -f $i
+    } Else
+    {
+        $i
+    }
 
-    $fileReponse = ((Invoke-WebRequest -UseBasicParsing "$baseUrl$tempCounter/pdf").Links | Where-Object { $_.href -like "http*" } | Where class -eq c-link)
-    if ($fileReponse) {
-        try {
+    $fileReponse = ((Invoke-WebRequest -UseBasicParsing "$baseUrl$tempCounter/pdf").Links | Where-Object { $_.href -like "https://magazine*" } | Where class -eq c-link)
+    if ($fileReponse)
+    {
+        try
+        {
+            Write-Host $fileReponse.href, "$baseDir\issues\" + $fileReponse.download
             $web.DownloadFile($fileReponse.href, "$baseDir\issues\" + $fileReponse.download)
             Write-Host "Downloaded from " + $fileReponse.href
-        }
-        Catch {
+        } Catch
+        {
             Write-Host $_.Exception | format-list -force
             Write-Host "Ocorred an error trying download " + $fileReponse.download
             $errorCount++
@@ -58,6 +70,7 @@ do {
     $i++
 } While ($i -le $issues)
 
-if ($errorCount -gt 0) {
+if ($errorCount -gt 0)
+{
     exit 1
 }
