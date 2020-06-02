@@ -25,7 +25,6 @@ jobs:
         id: normalIssuesWithRange
         shell: pwsh
         run: ./helloworld-downloader.ps1 -f 11 -l 12
-
   bash-linux:
     runs-on: ubuntu-latest
     steps:
