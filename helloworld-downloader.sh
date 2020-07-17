@@ -18,7 +18,7 @@ if [ ! -d "$OUTDIR" ]; then
 fi
 
 downloadUrl="https://helloworld.raspberrypi.org/issues/%02d/pdf"
-file="issues.txt";
+file="regular-issues.txt";
 recentIssue=$(cat "$file");
 
 # shellcheck disable=SC1090
