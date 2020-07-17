@@ -22,6 +22,6 @@ file="regular-issues.txt";
 recentIssue=$(cat "$file");
 
 # shellcheck disable=SC1090
-source <(curl https://raw.githubusercontent.com/joergi/downloader/master/linux_mac/downloader.sh) "$downloadUrl" "$recentIssue" "$@"
+bash <(curl https://raw.githubusercontent.com/joergi/downloader/master/linux_mac/downloader.sh) "$downloadUrl" "$recentIssue" "$@"
 
 exit 0
