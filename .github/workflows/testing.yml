@@ -20,11 +20,11 @@ jobs:
       - name: Download Issues With end limit
         id: normalIssuesWithLimit
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -l 3 && (issues/HelloWorld11.pdf)
+        run: ./helloworld-downloader.ps1 -l 3 && ([System.IO.File]::Exists(issues/HelloWorld11.pdf))
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -f 11 -l 12 && && (issues/HW_12_Digital_Edition3.pdf)
+        run: ./helloworld-downloader.ps1 -f 11 -l 12 
   bash-linux:
     runs-on: ubuntu-latest
     steps:
