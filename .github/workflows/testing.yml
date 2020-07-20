@@ -21,6 +21,10 @@ jobs:
         id: normalIssuesWithLimit
         shell: pwsh
         run: ./helloworld-downloader.ps1 -l 3
+      - name: lsah
+        id: lslah
+        shell: pwsh
+        run: Get-ChildItem issues/
       - name: "Check file existence"
         uses: andstor/file-existence-action@v1
         with:
