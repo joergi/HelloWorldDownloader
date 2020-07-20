@@ -22,7 +22,8 @@ jobs:
         shell: pwsh
         run: ./helloworld-downloader.ps1 -l 3
       - name: check if issue01 exists  
-      	id: checkIfIssue01Exists
+      	id: checkIfIssueOneExists
+      	shell: pwsh
       	run: [System.IO.File]::Exists("issues/HelloWorld11.pdf")
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
