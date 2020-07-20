@@ -20,7 +20,7 @@ jobs:
       - name: Download Issues With end limit
         id: normalIssuesWithLimit
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -l 3 && [[ -f issues/HelloWorld01.pdf ]]
+        run: ./helloworld-downloader.ps1 -l 3 && (issues/HelloWorld01.pdf)
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         shell: pwsh
