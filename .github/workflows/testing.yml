@@ -31,10 +31,14 @@ jobs:
         run: Get-ChildItem issues/
         # https://github.com/marketplace/actions/file-existence
       - name: "Check file existence"
+        id: check_files
         uses: andstor/file-existence-action@v1
         with:
           files: "issues/HelloWorld01.pd"
           allow_failure: false
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: exit 1
   bash-linux:
     runs-on: ubuntu-latest
     steps:
