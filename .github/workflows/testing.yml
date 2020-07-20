@@ -20,11 +20,11 @@ jobs:
       - name: Download Issues With end limit
         id: normalIssuesWithLimit
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -l 3
+        run: ./helloworld-downloader.ps1 -l 3 && [[ -f issues/HelloWorld01.pdf ]]
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -f 11 -l 12
+        run: ./helloworld-downloader.ps1 -f 11 -l 12 && [[ -f issues/HelloWorld12.pdf ]]
   bash-linux:
     runs-on: ubuntu-latest
     steps:
@@ -34,14 +34,14 @@ jobs:
         run: bash ./helloworld-downloader.sh -l 3 && [[ -f issues/HelloWorld01.pdf ]]
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
-        run: bash ./helloworld-downloader.sh -f 11 -l 12
+        run: bash ./helloworld-downloader.sh -f 11 -l 12 && [[ -f issues/HelloWorld11.pdf ]]
   bash-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
       - name: Download Issues with end limit
         id: normalIssuesWithLimit
-        run: bash ./helloworld-downloader.sh -l 3
+        run: bash ./helloworld-downloader.sh -l 3 && [[ -f issues/HelloWorld01.pdf ]]
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
-        run: bash ./helloworld-downloader.sh -f 11 -l 12
+        run: bash ./helloworld-downloader.sh -f 11 -l 12 && [[ -f issues/HelloWorld11.pdf ]]
