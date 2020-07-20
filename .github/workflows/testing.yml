@@ -20,7 +20,10 @@ jobs:
       - name: Download Issues With end limit
         id: normalIssuesWithLimit
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -l 3 && ([System.IO.File]::Exists(issues/HelloWorld11.pdf))
+        run: ./helloworld-downloader.ps1 -l 3
+      - name: check if issue01 exists  
+      	id: checkIfIssue01Exists
+      	run: [System.IO.File]::Exists("issues/HelloWorld11.pdf")
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         shell: pwsh
@@ -31,7 +34,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Download Issues with end limit
         id: normalIssuesWithLimit
-        run: bash ./helloworld-downloader.sh -l 3 && [[ -f issues/HelloWorld11.pdf ]]
+        run: bash ./helloworld-downloader.sh -l 3 && [[ -f issues/HelloWorld01.pdf ]]
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         run: bash ./helloworld-downloader.sh -f 11 -l 12 && [[ -f issues/HW_12_Digital_Edition3.pdf ]]
