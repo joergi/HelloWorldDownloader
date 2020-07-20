@@ -21,7 +21,7 @@ jobs:
         id: normalIssuesWithLimit
         shell: pwsh
         run: ./helloworld-downloader.ps1 -l 3
-      - name: check if issue01 exists  
+      - name: check if issue01 exists
       	id: checkIfIssueOneExists
       	shell: pwsh
       	run: [System.IO.File]::Exists("issues/HelloWorld11.pdf")
