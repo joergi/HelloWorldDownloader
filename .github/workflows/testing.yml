@@ -57,7 +57,7 @@ jobs:
         run: bash ./helloworld-downloader.sh -f 11 -l 12
       - name: lsah
         id: lslah
-        run: ls -lah
+        run: ls -lah issues/
       # https://github.com/marketplace/actions/file-existence
       - name: "Check file existence"
         id: check_files
