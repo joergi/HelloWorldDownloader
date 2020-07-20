@@ -21,18 +21,20 @@ jobs:
         id: normalIssuesWithLimit
         shell: pwsh
         run: ./helloworld-downloader.ps1 -l 3
+      - name: Download Issues with start and end limit
+        id: normalIssuesWithRange
+        shell: pwsh
+        run: ./helloworld-downloader.ps1 -f 11 -l 12
       - name: lsah
         id: lslah
         shell: pwsh
         run: Get-ChildItem issues/
+        # https://github.com/marketplace/actions/file-existence
       - name: "Check file existence"
         uses: andstor/file-existence-action@v1
         with:
           files: "issues/HelloWorld01.pd"
-      - name: Download Issues with start and end limit
-        id: normalIssuesWithRange
-        shell: pwsh
-        run: ./helloworld-downloader.ps1 -f 11 -l 12 
+          allow_failure: false
   bash-linux:
     runs-on: ubuntu-latest
     steps:
