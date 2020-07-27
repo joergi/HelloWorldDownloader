@@ -26,7 +26,7 @@ jobs:
         shell: pwsh
         run: ./helloworld-downloader.ps1 -f 11 -l 12
         # https://github.com/marketplace/actions/file-existence
-      - name: "Check file existence"
+      - name: "Check file existence Windows"
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
@@ -44,7 +44,16 @@ jobs:
         run: bash ./helloworld-downloader.sh -l 3 && [[ -f issues/HelloWorld01.pdf ]]
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
-        run: bash ./helloworld-downloader.sh -f 11 -l 12 && [[ -f issues/HW_12_Digital_Edition3.pdf ]]
+        run: bash ./helloworld-downloader.sh -f 11 -l 12
+      - name: "Check file existence Linux"
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "issues/HelloWorld01.pdf, issues/HW_12_Digital_Edition3.pdf"
+          allow_failure: false
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: exit 1        
   bash-macos:
     runs-on: macos-latest
     steps:
@@ -59,11 +68,11 @@ jobs:
         id: lslah
         run: ls -lah issues/
       # https://github.com/marketplace/actions/file-existence
-      - name: "Check file existence"
+      - name: "Check file existence Mac"
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "issues/HelloWorld01.pdf, issues/W_12_Digital_Edition3.pdf"
+          files: "issues/HelloWorld01.pdf, issues/HW_12_Digital_Edition3.pdf"
           allow_failure: false
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'false'
