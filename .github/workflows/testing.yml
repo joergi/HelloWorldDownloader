@@ -101,14 +101,14 @@ jobs:
         run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_ONE }}
       - name: Download Issues with end limit
         id: normalIssuesWithEndLimit
-        run: bash ./helloworld-downloader.sh -l 3        
+        run: bash ./helloworld-downloader.sh -l 2
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_SIX }} -l ${{ env.ISSUE_MINUS_FIVE }}
       - name: lsah
         id: lslah
         run: ls -lah issues/
-      # https://github.com/marketplace/actions/file-existence
+
       - name: "Check file existence Mac"
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
