@@ -39,7 +39,8 @@ jobs:
         id: normalIssuesWithRange
         shell: pwsh
         run: ./helloworld-downloader.ps1 -f ${{ env.ISSUE_MINUS_SIX }} -l ${{ env.ISSUE_MINUS_FIVE }}
-        # https://github.com/marketplace/actions/file-existence
+      - name: lslah
+        run: Get-ChildItem issues/
       - name: "Check file existence Windows"
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
@@ -73,6 +74,8 @@ jobs:
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_SIX }} -l ${{ env.ISSUE_MINUS_FIVE }}
+      - name: lslah
+        run: ls -lah issues/
       - name: "Check file existence Linux"
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
@@ -108,7 +111,6 @@ jobs:
       - name: lsah
         id: lslah
         run: ls -lah issues/
-
       - name: "Check file existence Mac"
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
