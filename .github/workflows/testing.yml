@@ -16,23 +16,33 @@ jobs:
   powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3.0.2
+      - uses: pCYSl5EDgo/cat@master
+        id: read_recent
+        with:
+          path: regular-issues.txt
+      - run: |
+          echo "ISSUE_NUMBER=${{ steps.read_recent.outputs.text }}" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_ONE=$((${{ steps.read_recent.outputs.text }}-1))" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_FIVE=$((${{ steps.read_recent.outputs.text }}-5))" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_SIX=$((${{ steps.read_recent.outputs.text }}-6))" >> $GITHUB_ENV
+
       - name: Download Issues With start limit
         id: normalIssuesWithStartLimit
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -f 13
+        run: ./helloworld-downloader.ps1 -f ${{ env.ISSUE_MINUS_ONE }}
       - name: Download Issues With end limit
         id: normalIssuesWithEndLimit
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -l 3
+        run: ./helloworld-downloader.ps1 -l 2
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
         shell: pwsh
-        run: ./helloworld-downloader.ps1 -f 5 -l 6
+        run: ./helloworld-downloader.ps1 -f ${{ env.ISSUE_MINUS_SIX }} -l ${{ env.ISSUE_MINUS_FIVE }}
         # https://github.com/marketplace/actions/file-existence
       - name: "Check file existence Windows"
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v2.0.0
         with:
           files: "issues/hello-world-issue-3.pdf, issues/hello-world-issue-6.pdf, issues/hello-world-issue-14.pdf"
           allow_failure: false
@@ -42,16 +52,30 @@ jobs:
   bash-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3.0.2
+      - uses: pCYSl5EDgo/cat@master
+        id: read_recent
+        with:
+          path: regular-issues.txt
+      - run: |
+          echo "ISSUE_NUMBER=${{ steps.read_recent.outputs.text }}" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_ONE=$((${{ steps.read_recent.outputs.text }}-1))" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_FIVE=$((${{ steps.read_recent.outputs.text }}-5))" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_SIX=$((${{ steps.read_recent.outputs.text }}-6))" >> $GITHUB_ENV
+
       - name: Download Issues with end limit
         id: normalIssuesWithLimit
-        run: bash ./helloworld-downloader.sh -l 3 && [[ -f issues/HelloWorld01.pdf ]]
+        run: bash ./helloworld-downloader.sh -l 2
+      - name: Download Issues with start limit
+        id: normalIssuesWithLimit
+        run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_ONE }}
+
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
-        run: bash ./helloworld-downloader.sh -f 13 -l 14
+        run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_SIX }} -l ${{ env.ISSUE_MINUS_FIVE }}
       - name: "Check file existence Linux"
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v2.0.0
         with:
           files: "issues/HelloWorld01.pdf, issues/HelloWorld_14_digital.pdf"
           allow_failure: false
@@ -61,23 +85,33 @@ jobs:
   bash-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3.0.2
+      - uses: pCYSl5EDgo/cat@master
+        id: read_recent
+        with:
+          path: regular-issues.txt
+      - run: |
+          echo "ISSUE_NUMBER=${{ steps.read_recent.outputs.text }}" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_ONE=$((${{ steps.read_recent.outputs.text }}-1))" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_FIVE=$((${{ steps.read_recent.outputs.text }}-5))" >> $GITHUB_ENV
+          echo "ISSUE_MINUS_SIX=$((${{ steps.read_recent.outputs.text }}-6))" >> $GITHUB_ENV
+
       - name: Download Issues with start limit
         id: normalIssuesWithStartLimit
-        run: bash ./helloworld-downloader.sh -f 13
+        run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_ONE }}
       - name: Download Issues with end limit
         id: normalIssuesWithEndLimit
         run: bash ./helloworld-downloader.sh -l 3        
       - name: Download Issues with start and end limit
         id: normalIssuesWithRange
-        run: bash ./helloworld-downloader.sh -f 5 -l 6
+        run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_SIX }} -l ${{ env.ISSUE_MINUS_FIVE }}
       - name: lsah
         id: lslah
         run: ls -lah issues/
       # https://github.com/marketplace/actions/file-existence
       - name: "Check file existence Mac"
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v2.0.0
         with:
           files: "issues/HelloWorld01.pdf, issues/HelloWorld06.pdf, issues/HelloWorld_14_digital.pdf"
           allow_failure: false
