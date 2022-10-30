@@ -64,10 +64,10 @@ jobs:
           echo "ISSUE_MINUS_SIX=$((${{ steps.read_recent.outputs.text }}-6))" >> $GITHUB_ENV
 
       - name: Download Issues with end limit
-        id: normalIssuesWithLimit
+        id: normalIssuesWithEndLimit
         run: bash ./helloworld-downloader.sh -l 2
       - name: Download Issues with start limit
-        id: normalIssuesWithLimit
+        id: normalIssuesWithStartLimit
         run: bash ./helloworld-downloader.sh -f ${{ env.ISSUE_MINUS_ONE }}
 
       - name: Download Issues with start and end limit
