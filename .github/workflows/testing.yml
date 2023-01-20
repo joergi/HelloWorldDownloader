@@ -80,7 +80,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
         with:
-          files: "issues/HelloWorld01.pdf, issues/HelloWorld_14_digital.pdf"
+          files: "issues/HelloWorld01.pdf, issues/HelloWorld02.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_SIX }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld${{ env.ISSUE_NUMBER }}.pdf"
           allow_failure: false
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'false'
@@ -115,7 +115,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2.0.0
         with:
-          files: "issues/HelloWorld01.pdf, issues/HelloWorld06.pdf, issues/HelloWorld_14_digital.pdf"
+          files: "issues/HelloWorld01.pdf, issues/HelloWorld02.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_SIX }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld${{ env.ISSUE_NUMBER }}.pdf"
           allow_failure: false
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'false'
