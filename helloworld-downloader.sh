@@ -22,7 +22,7 @@ if [ ! -d "$OUTDIR" ]; then
  mkdir "$OUTDIR"
 fi
 
-downloadUrl="https://helloworld.raspberrypi.org/issues/%02d/pdf"
+downloadUrl=" https://www.raspberrypi.org/hello-world/issues/%02d"
 file="regular-issues.txt";
 recentIssue=$(cat "$file");
 
