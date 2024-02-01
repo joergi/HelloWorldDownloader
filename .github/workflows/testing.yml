@@ -44,7 +44,7 @@ jobs:
         run: Get-ChildItem issues/
       - name: "Check file existence Windows"
         id: check_files
-        uses: andstor/file-existence-action@v2.0.0
+        uses: andstor/file-existence-action@v3.0.0
         with:
           files: "issues/hello-world-issue-1.pdf, issues/hello-world-issue-2.pdf, issues/hello-world-issue-${{ env.ISSUE_MINUS_SIX }}.pdf, issues/hello-world-issue-${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/hello-world-issue-${{ env.ISSUE_MINUS_ONE }}.pdf, issues/hello-world-issue-${{ env.ISSUE_NUMBER }}.pdf"
           allow_failure: false
@@ -79,7 +79,7 @@ jobs:
         run: ls -lah issues/
       - name: "Check file existence Linux"
         id: check_files
-        uses: andstor/file-existence-action@v2.0.0
+        uses: andstor/file-existence-action@v3.0.0
         with:
           files: "issues/HelloWorld_1.pdf, issues/HelloWorld_2.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld_${{ env.ISSUE_NUMBER }}.pdf"
           # that should be the normal one, but #13 and #14 are named wrong:  HW_13_Digital_Edition_V3.pdf + HelloWorld_14_digital.pdf
@@ -116,7 +116,7 @@ jobs:
         run: ls -lah issues/
       - name: "Check file existence Mac"
         id: check_files
-        uses: andstor/file-existence-action@v2.0.0
+        uses: andstor/file-existence-action@v3.0.0
         with:
           files: "issues/HelloWorld_1.pdf, issues/HelloWorld_2.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld_${{ env.ISSUE_NUMBER }}.pdf"
          # that should be the normal one, but #13 and #14 are named wrong:  HW_13_Digital_Edition_V3.pdf + HelloWorld_14_digital.pdf
