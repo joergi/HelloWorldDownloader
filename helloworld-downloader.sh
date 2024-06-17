@@ -22,7 +22,7 @@ if [ ! -d "$OUTDIR" ]; then
  mkdir "$OUTDIR"
 fi
 
-downloadUrl=" https://www.raspberrypi.org/hello-world/issues/%02d"
+downloadUrl="https://www.raspberrypi.org/hello-world/issues/%d"
 file="regular-issues.txt";
 recentIssue=$(cat "$file");
 
@@ -30,6 +30,6 @@ recentIssue=$(cat "$file");
 # workaround for a known limitation in bash 3.x: http://lists.gnu.org/archive/html/bug-bash/2006-01/msg00018.html
 # stackoverflow: https://stackoverflow.com/questions/32596123/why-source-command-doesnt-work-with-process-substitution-in-bash-3-2/32596626#32596626
 # shellcheck disable=SC1091
-source /dev/stdin <<<"$(curl -s https://raw.githubusercontent.com/joergi/downloader/0.4.6/linux_mac/downloader.sh)" "$downloadUrl" "$OUTDIR" "$recentIssue" HelloWorld_ "$@"
+source /dev/stdin <<<"$(curl -s https://raw.githubusercontent.com/joergi/downloader/0.5.0/linux_mac/downloader.sh)" "$downloadUrl" "$OUTDIR" "$recentIssue" HelloWorld_ "$@"
 
 exit 0
