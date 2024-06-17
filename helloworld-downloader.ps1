@@ -19,7 +19,7 @@ Param(
 $i = 1
 $baseDir = ($PSScriptRoot)
 $issues = Get-Content "$baseDir\regular-issues.txt" -First 1
-$baseUrl = "https://helloworld.raspberrypi.org/issues/"
+$baseUrl = "https://www.raspberrypi.org/hello-world/issues/"
 $web = New-Object system.net.webclient
 $errorCount = 0
 
