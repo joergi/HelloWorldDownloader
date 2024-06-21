@@ -89,7 +89,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "issues/HelloWorld_1.pdf, issues/HelloWorld_2.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld_${{ env.ISSUE_NUMBER }}.pdf, special-issues/Hello_World_The_Big_Book_of_Pedagogy.pdf, special-issues/HelloWorld_The_Big_Book_of_Computing_Content.pdf"
+          files: "issues/HelloWorld_1.pdf, issues/HelloWorld_2.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_SIX }}.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld_${{ env.ISSUE_NUMBER }}.pdf, special-issues/Hello_World_The_Big_Book_of_Pedagogy.pdf, special-issues/HelloWorld_The_Big_Book_of_Computing_Content.pdf"
           # that should be the normal one, but #13 and #14 are named wrong:  HW_13_Digital_Edition_V3.pdf + HelloWorld_14_digital.pdf
           # files: "issues/HelloWorld01.pdf, issues/HelloWorld02.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_SIX }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld${{ env.ISSUE_NUMBER }}.pdf"
           allow_failure: false
@@ -133,7 +133,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: "issues/HelloWorld_1.pdf, issues/HelloWorld_2.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld_${{ env.ISSUE_NUMBER }}.pdf, special-issues/Hello_World_The_Big_Book_of_Pedagogy.pdf, special-issues/HelloWorld_The_Big_Book_of_Computing_Content.pdf"
+          files: "issues/HelloWorld_1.pdf, issues/HelloWorld_2.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_SIX }}.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/HelloWorld_${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld_${{ env.ISSUE_NUMBER }}.pdf, special-issues/Hello_World_The_Big_Book_of_Pedagogy.pdf, special-issues/HelloWorld_The_Big_Book_of_Computing_Content.pdf"
          # that should be the normal one, but #13 and #14 are named wrong:  HW_13_Digital_Edition_V3.pdf + HelloWorld_14_digital.pdf
          # files: "issues/HelloWorld01.pdf, issues/HelloWorld02.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_SIX }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_FIVE }}.pdf, issues/HelloWorld${{ env.ISSUE_MINUS_ONE }}.pdf, issues/HelloWorld${{ env.ISSUE_NUMBER }}.pdf"
           allow_failure: false
