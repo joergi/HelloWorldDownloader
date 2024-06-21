@@ -24,7 +24,7 @@ $web = New-Object system.net.webclient
 $errorCount = 0
 
 # Check if directory dont exist and try create
-if ( -Not (Test-Path -Path "$baseDir\issues" ) )
+if (-Not (Test-Path -Path "$baseDir\issues"))
 {
     New-Item -ItemType directory -Path "$baseDir\issues"
 }
@@ -44,33 +44,33 @@ do
 {
     #start scrapping directory and download files
 
-    $tempCounter = if ($i -le 9)
-    {
-        "{0:00}" -f $i
-    } Else
-    {
-        $i
-    }
+    $tempCounter = $i
 
-    $fileReponse = ((Invoke-WebRequest -UseBasicParsing "$baseUrl$tempCounter/pdf").Links | Where-Object { $_.href -like "https://magazine*" } | Where class -eq c-link)
+    $fileReponse = ((Invoke-WebRequest -UseBasicParsing "$baseUrl$tempCounter").Links | Where-Object { $_.href -like "*H*W*.pdf" })
     if ($fileReponse)
     {
         try
         {
-            Write-Host $fileReponse.href, "$baseDir\issues\" + $fileReponse.download
-            $web.DownloadFile($fileReponse.href, "$baseDir\issues\" + $fileReponse.download)
-            Write-Host "Downloaded from " + $fileReponse.href
-        } Catch
+            $filePath = "$baseDir\issues\HelloWorld_$tempCounter.pdf"
+            Invoke-WebRequest $fileReponse.href -OutFile $filePath -ErrorAction Stop
+            Write-Verbose -Message "Downloaded $fileReponse.href"
+        }
+        Catch
         {
             Write-Host $_.Exception | format-list -force
             Write-Host "Ocorred an error trying download " + $fileReponse.download
             $errorCount++
         }
+        finally
+        {
+            # Code to be executed regardless of whether an exception was thrown or not
+            if ($errorCount -gt 0)
+            {
+                exit 1
+            }
+        }
     }
     $i++
 } While ($i -le $issues)
 
-if ($errorCount -gt 0)
-{
-    exit 1
-}
+
