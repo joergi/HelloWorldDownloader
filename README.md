@@ -1,6 +1,6 @@
 # HelloWorldDownloader
 
-[![CI](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml/badge.svg)](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml) |  [![CI](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml/badge.svg)](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml) |  [![CI](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml/badge.svg)](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml)  
+[![Test passing for Windows/Mac/LinuxI](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml/badge.svg)](https://github.com/joergi/HelloWorldDownloader/actions/workflows/testing.yml) 
 
 Downloader for the Hello World magazine https://helloworld.raspberrypi.org
 
